@@ -27,16 +27,20 @@ function onBtnMore() {
   getPixa();
 }
 
-function getPixa() {
-  axios
-    .get(
-      `${URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=5&page=${counterPage}`
-    )
-    .then(res => {
-      if (res.data.hits.length !== 0) {
-        res.data.hits.forEach(element => {
-          console.log(element.tags);
-        });
-      } else console.log('not imgs');
-    });
+async function getPixa() {
+  response = await axios.get(
+    `${URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=5&page=${counterPage}`
+  );
+  console.log(response.data);
+  // axios
+  //   .get(
+  //     `${URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=5&page=${counterPage}`
+  //   )
+  //   .then(res => {
+  //     if (res.data.hits.length !== 0) {
+  //       res.data.hits.forEach(element => {
+  //         console.log(element.tags);
+  //       });
+  //     } else console.log('not imgs');
+  //   });
 }
