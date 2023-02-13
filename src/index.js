@@ -28,7 +28,7 @@ function onBtnMore() {
 }
 
 async function getPixa() {
-  response = await axios.get(
+  const response = await axios.get(
     `${URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=5&page=${counterPage}`
   );
   console.log(response.data);
