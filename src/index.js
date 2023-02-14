@@ -20,6 +20,7 @@ function onSearchInput(e) {
 
 function onSubmitForm(e) {
   e.preventDefault();
+  gallery.innerHTML = '';
   counterPage = 1;
   e.target.reset();
   getPixa();
