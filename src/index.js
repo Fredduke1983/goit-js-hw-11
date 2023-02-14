@@ -20,10 +20,14 @@ function onSearchInput(e) {
 
 function onSubmitForm(e) {
   e.preventDefault();
-  gallery.innerHTML = '';
+  resetGallery();
   counterPage = 1;
   e.target.reset();
   getPixa();
+}
+
+function resetGallery() {
+  gallery.innerHTML = '';
 }
 
 function onBtnMore() {
@@ -37,7 +41,7 @@ async function getPixa() {
   );
   galleryRef = await response.data.hits.map(element => {
     return `<div class="photo-card">
-                          <img src="${element.webformatURL}" alt="${element.tags}" loading="lazy" />
+                          <img src="${element.webformatURL}" alt="${element.tags}" loading="lazy" width="100%" height="100%"/>
                           <div class="info">
                             <p class="info-item">
                               <b>Likes: ${element.likes}</b>
@@ -54,17 +58,5 @@ async function getPixa() {
                           </div>
                         </div>`;
   });
-  gallery.insertAdjacentHTML('beforeend', galleryRef.join());
-
-  // axios
-  //   .get(
-  //     `${URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=5&page=${counterPage}`
-  //   )
-  //   .then(res => {
-  //     if (res.data.hits.length !== 0) {
-  //       res.data.hits.forEach(element => {
-  //         console.log(element.tags);
-  //       });
-  //     } else console.log('not imgs');
-  //   });
+  gallery.insertAdjacentHTML('beforeend', galleryRef.join(''));
 }
