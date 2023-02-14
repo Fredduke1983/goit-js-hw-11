@@ -7,7 +7,7 @@ const loadMore = document.querySelector('.load_more');
 const gallery = document.querySelector('.gallery');
 
 let counterPage = 1;
-let inputValue = null;
+let inputValue = '';
 let galleryRef = null;
 
 searchForm.addEventListener('input', onSearchInput);
@@ -23,7 +23,10 @@ function onSubmitForm(e) {
   resetGallery();
   counterPage = 1;
   e.target.reset();
-  getPixa();
+  if (inputValue.length !== 0) {
+    getPixa();
+  } else console.log('no images');
+  inputValue = '';
 }
 
 function resetGallery() {
@@ -32,6 +35,7 @@ function resetGallery() {
 
 function onBtnMore() {
   counterPage += 1;
+
   getPixa();
 }
 
