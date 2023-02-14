@@ -5,6 +5,7 @@ const URL = 'https://pixabay.com/api/';
 const searchForm = document.querySelector('.search-form');
 const loadMore = document.querySelector('.load_more');
 const gallery = document.querySelector('.gallery');
+const inputField = document.querySelector('input[name="searchQuery"');
 
 let counterPage = 1;
 let inputValue = '';
@@ -15,18 +16,23 @@ searchForm.addEventListener('submit', onSubmitForm);
 loadMore.addEventListener('click', onBtnMore);
 
 function onSearchInput(e) {
-  inputValue = e.target.value;
+  // inputValue = e.target.value;
+  inputValue = inputField.value;
+}
+
+function setValueFromInput() {
+  inputValue = inputField.value;
 }
 
 function onSubmitForm(e) {
   e.preventDefault();
+  inputValue = inputField.value;
   resetGallery();
   counterPage = 1;
   e.target.reset();
   if (inputValue.length !== 0) {
     getPixa();
   } else console.log('no images');
-  inputValue = '';
 }
 
 function resetGallery() {
