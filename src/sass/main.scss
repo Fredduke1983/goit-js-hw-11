@@ -13,6 +13,7 @@ p {
   padding: 0;
 }
 .render_field {
+  display: block;
   text-align: center;
 }
 
@@ -23,6 +24,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   gap: 60px;
+  justify-content: center;
 }
 
 .info {
