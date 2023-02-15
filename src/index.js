@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Notify } from 'notiflix';
 
 const KEY = '33584211-0b8ad53b88131ae018d3e6558';
 const URL = 'https://pixabay.com/api/';
@@ -32,9 +33,8 @@ function onSubmitForm(e) {
   counterResponse = 1;
   e.target.reset();
   if (inputValue.length !== 0) {
-    console.log('next Pixa');
     getPixa();
-  } else console.log('Pls type anything for searchh');
+  } else Notify.warning('Please, type anything for searching!');
 }
 
 function resetGallery() {
@@ -72,9 +72,11 @@ async function getPixa() {
   });
   console.log(response.data.hits, response.data.totalHits);
   if (galleryRef.length === 0 && counterResponse > 1) {
-    console.log("We're sorry, but you've reached the end of search results.");
+    Notify.info("We're sorry, but you've reached the end of search results.");
   } else if (galleryRef.length === 0 && counterResponse === 1) {
-    console.log('no images');
+    Notify.warning(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
   } else {
     gallery.insertAdjacentHTML('beforeend', galleryRef.join(''));
   }
