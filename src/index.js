@@ -8,6 +8,7 @@ const gallery = document.querySelector('.gallery');
 const inputField = document.querySelector('input[name="searchQuery"');
 
 let counterPage = 1;
+let counterResponse = 1;
 let inputValue = '';
 let galleryRef = null;
 
@@ -69,9 +70,14 @@ async function getPixa() {
                         </div>`;
   });
   console.log(response.data.hits, response.data.totalHits);
-  if (inputValue.length !== 0 && galleryRef.length === 0) {
-    console.log('no images');
+  if (
+    inputValue.length !== 0 &&
+    galleryRef.length === 0 &&
+    counterResponse > 1
+  ) {
+    console.log("We're sorry, but you've reached the end of search results.");
   } else {
     gallery.insertAdjacentHTML('beforeend', galleryRef.join(''));
   }
+  counterResponse += 1;
 }
