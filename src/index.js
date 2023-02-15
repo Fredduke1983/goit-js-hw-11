@@ -5,7 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const KEY = '33584211-0b8ad53b88131ae018d3e6558';
 const URL = 'https://pixabay.com/api/';
-const perPage = 16;
+const perPage = 24;
 
 const searchForm = document.querySelector('.search-form');
 const loadMore = document.querySelector('.load_more');
@@ -44,9 +44,15 @@ function resetGallery() {
   gallery.innerHTML = '';
 }
 
-function onBtnMore() {
+async function onBtnMore() {
   counterPage += 1;
-  getPixa();
+  await getPixa();
+  const { height: cardHeight } =
+    gallery.firstElementChild.getBoundingClientRect();
+  window.scrollBy({
+    top: cardHeight * 2,
+    behavior: 'smooth',
+  });
   lightBox.refresh();
 }
 
@@ -88,6 +94,7 @@ async function getPixa() {
       loadMore.classList.remove('is-hidden');
     }
     renderHTML(gallery, galleryRef);
+
     lightBox.refresh();
   }
   counterResponse += 1;
