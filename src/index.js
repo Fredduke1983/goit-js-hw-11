@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { Notify } from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const KEY = '33584211-0b8ad53b88131ae018d3e6558';
 const URL = 'https://pixabay.com/api/';
@@ -32,6 +34,7 @@ function onSubmitForm(e) {
   e.target.reset();
   if (inputValue.length !== 0) {
     getPixa();
+    console.log();
   } else Notify.warning('Please, type anything for searching!');
 }
 
@@ -42,6 +45,7 @@ function resetGallery() {
 function onBtnMore() {
   counterPage += 1;
   getPixa();
+  lightBox.refresh();
 }
 
 async function getPixa() {
@@ -50,7 +54,9 @@ async function getPixa() {
   );
   galleryRef = await response.data.hits.map(element => {
     return `<div class="photo-card">
-                          <img src="${element.webformatURL}" alt="${element.tags}" loading="lazy" width="100%" height="100%"/>
+                        <a class="gallery__link" href="${element.largeImageURL}">
+                          <img src="${element.webformatURL}" alt="${element.tags}" data-source="${element.largeImageURL}" loading="lazy" width="100%" height="100%"/>
+                        </a>
                           <div class="info">
                             <p class="info-item">
                               <b>Likes: ${element.likes}</b>
@@ -78,6 +84,7 @@ async function getPixa() {
       Notify.success(`Hooray! We found ${response.data.totalHits} images.`);
     }
     renderHTML(gallery, galleryRef);
+    lightBox.refresh();
   }
   counterResponse += 1;
 }
@@ -85,3 +92,8 @@ async function getPixa() {
 function renderHTML(gallery, refGallery) {
   gallery.insertAdjacentHTML('beforeend', refGallery.join(''));
 }
+
+let lightBox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
