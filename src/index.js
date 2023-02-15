@@ -55,7 +55,7 @@ async function getPixa() {
   galleryRef = await response.data.hits.map(element => {
     return `<div class="photo-card">
                         <a class="gallery__link" href="${element.largeImageURL}">
-                          <img src="${element.webformatURL}" alt="${element.tags}" data-source="${element.largeImageURL}" loading="lazy" width="100%" height="100%"/>
+                          <img src="${element.webformatURL}" alt="${element.tags}" data-source="${element.largeImageURL}" loading="lazy"/>
                         </a>
                           <div class="info">
                             <p class="info-item">
