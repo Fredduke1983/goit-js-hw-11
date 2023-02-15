@@ -74,7 +74,14 @@ async function getPixa() {
       'Sorry, there are no images matching your search query. Please try again.'
     );
   } else {
-    gallery.insertAdjacentHTML('beforeend', galleryRef.join(''));
+    if (galleryRef.length !== 0 && counterResponse === 1) {
+      Notify.success(`Hooray! We found ${response.data.totalHits} images.`);
+    }
+    renderHTML(gallery, galleryRef);
   }
   counterResponse += 1;
+}
+
+function renderHTML(gallery, refGallery) {
+  gallery.insertAdjacentHTML('beforeend', refGallery.join(''));
 }
