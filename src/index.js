@@ -5,7 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const KEY = '33584211-0b8ad53b88131ae018d3e6558';
 const URL = 'https://pixabay.com/api/';
-const perPage = 5;
+const perPage = 16;
 
 const searchForm = document.querySelector('.search-form');
 const loadMore = document.querySelector('.load_more');
