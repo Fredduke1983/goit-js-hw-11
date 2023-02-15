@@ -33,6 +33,7 @@ function onSubmitForm(e) {
   counterResponse = 1;
   e.target.reset();
   loadMore.removeAttribute('disabled');
+  loadMore.classList.add('is-hidden');
   if (inputValue.length !== 0) {
     getPixa();
     console.log();
@@ -84,9 +85,9 @@ async function getPixa() {
   } else {
     if (galleryRef.length !== 0 && counterResponse === 1) {
       Notify.success(`Hooray! We found ${response.data.totalHits} images.`);
+      loadMore.classList.remove('is-hidden');
     }
     renderHTML(gallery, galleryRef);
-
     lightBox.refresh();
   }
   counterResponse += 1;
