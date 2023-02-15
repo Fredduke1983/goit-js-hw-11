@@ -17,17 +17,13 @@ searchForm.addEventListener('input', onSearchInput);
 searchForm.addEventListener('submit', onSubmitForm);
 loadMore.addEventListener('click', onBtnMore);
 
-function onSearchInput(e) {
-  inputValue = inputField.value;
-}
-
-function setValueFromInput() {
+function onSearchInput() {
   inputValue = inputField.value;
 }
 
 function onSubmitForm(e) {
   e.preventDefault();
-  inputValue = inputField.value;
+  onSearchInput();
   resetGallery();
   counterPage = 1;
   counterResponse = 1;
@@ -70,7 +66,6 @@ async function getPixa() {
                           </div>
                         </div>`;
   });
-  console.log(response.data.hits, response.data.totalHits);
   if (galleryRef.length === 0 && counterResponse > 1) {
     Notify.info("We're sorry, but you've reached the end of search results.");
   } else if (galleryRef.length === 0 && counterResponse === 1) {
