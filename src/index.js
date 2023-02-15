@@ -31,8 +31,9 @@ function onSubmitForm(e) {
   counterPage = 1;
   e.target.reset();
   if (inputValue.length !== 0) {
+    console.log('next Pixa');
     getPixa();
-  } else console.log('no images');
+  } else console.log('no imagess');
 }
 
 function resetGallery() {
@@ -68,5 +69,7 @@ async function getPixa() {
                           </div>
                         </div>`;
   });
+
+  console.log(inputValue);
   gallery.insertAdjacentHTML('beforeend', galleryRef.join(''));
 }
