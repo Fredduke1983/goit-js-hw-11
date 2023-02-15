@@ -68,6 +68,7 @@ async function getPixa() {
                           </div>
                         </div>`;
   });
+  console.log(response.data.hits, response.data.hits.totalHits);
   if (inputValue.length !== 0 && galleryRef.length === 0) {
     console.log('no images');
   } else {
