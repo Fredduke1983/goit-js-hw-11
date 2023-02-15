@@ -7,8 +7,8 @@ const loadMore = document.querySelector('.load_more');
 const gallery = document.querySelector('.gallery');
 const inputField = document.querySelector('input[name="searchQuery"');
 
-let counterPage = 1;
-let counterResponse = 1;
+let counterPage = null;
+let counterResponse = null;
 let inputValue = '';
 let galleryRef = null;
 
