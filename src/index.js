@@ -16,7 +16,6 @@ searchForm.addEventListener('submit', onSubmitForm);
 loadMore.addEventListener('click', onBtnMore);
 
 function onSearchInput(e) {
-  // inputValue = e.target.value;
   inputValue = inputField.value;
 }
 
@@ -33,7 +32,7 @@ function onSubmitForm(e) {
   if (inputValue.length !== 0) {
     console.log('next Pixa');
     getPixa();
-  } else console.log('no imagess');
+  } else console.log('Pls type anything for search');
 }
 
 function resetGallery() {
@@ -69,7 +68,9 @@ async function getPixa() {
                           </div>
                         </div>`;
   });
-
-  console.log(inputValue);
-  gallery.insertAdjacentHTML('beforeend', galleryRef.join(''));
+  if (inputValue.length !== 0 && galleryRef.length === 0) {
+    console.log('no images');
+  } else {
+    gallery.insertAdjacentHTML('beforeend', galleryRef.join(''));
+  }
 }
