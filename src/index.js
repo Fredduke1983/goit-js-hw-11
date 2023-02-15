@@ -12,6 +12,7 @@ let counterPage = null;
 let counterResponse = null;
 let inputValue = '';
 let galleryRef = null;
+const perPage = 5;
 
 searchForm.addEventListener('input', onSearchInput);
 searchForm.addEventListener('submit', onSubmitForm);
@@ -39,13 +40,12 @@ function resetGallery() {
 
 function onBtnMore() {
   counterPage += 1;
-
   getPixa();
 }
 
 async function getPixa() {
   const response = await axios.get(
-    `${URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=5&page=${counterPage}`
+    `${URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${perPage}&page=${counterPage}`
   );
   galleryRef = await response.data.hits.map(element => {
     return `<div class="photo-card">
