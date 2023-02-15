@@ -32,6 +32,7 @@ function onSubmitForm(e) {
   counterPage = 1;
   counterResponse = 1;
   e.target.reset();
+  loadMore.removeAttribute('disabled');
   if (inputValue.length !== 0) {
     getPixa();
     console.log();
@@ -75,6 +76,7 @@ async function getPixa() {
   });
   if (galleryRef.length === 0 && counterResponse > 1) {
     Notify.info("We're sorry, but you've reached the end of search results.");
+    loadMore.setAttribute('disabled', '');
   } else if (galleryRef.length === 0 && counterResponse === 1) {
     Notify.warning(
       'Sorry, there are no images matching your search query. Please try again.'
@@ -84,6 +86,7 @@ async function getPixa() {
       Notify.success(`Hooray! We found ${response.data.totalHits} images.`);
     }
     renderHTML(gallery, galleryRef);
+
     lightBox.refresh();
   }
   counterResponse += 1;
