@@ -29,6 +29,7 @@ function onSubmitForm(e) {
   inputValue = inputField.value;
   resetGallery();
   counterPage = 1;
+  counterResponse = 1;
   e.target.reset();
   if (inputValue.length !== 0) {
     console.log('next Pixa');
