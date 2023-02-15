@@ -34,7 +34,7 @@ function onSubmitForm(e) {
   if (inputValue.length !== 0) {
     console.log('next Pixa');
     getPixa();
-  } else console.log('Pls type anything for search');
+  } else console.log('Pls type anything for searchh');
 }
 
 function resetGallery() {
@@ -71,12 +71,10 @@ async function getPixa() {
                         </div>`;
   });
   console.log(response.data.hits, response.data.totalHits);
-  if (
-    inputValue.length !== 0 &&
-    galleryRef.length === 0 &&
-    counterResponse > 1
-  ) {
+  if (galleryRef.length === 0 && counterResponse > 1) {
     console.log("We're sorry, but you've reached the end of search results.");
+  } else if (galleryRef.length === 0 && counterResponse === 1) {
+    console.log('no images');
   } else {
     gallery.insertAdjacentHTML('beforeend', galleryRef.join(''));
   }
