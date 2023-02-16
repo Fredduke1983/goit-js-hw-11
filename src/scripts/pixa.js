@@ -8,13 +8,13 @@ const perPage = 20;
 
 const loadMore = document.querySelector('.load_more');
 const gallery = document.querySelector('.gallery');
-let counterResponse = 1;
+// let counterResponse = 1;
 
 async function getPixa(inputValue, counterPage, counterResponse) {
   const response = await axios.get(
     `${URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${perPage}&page=${counterPage}`
   );
-  galleryRef = await response.data.hits.map(element => {
+  let galleryRef = await response.data.hits.map(element => {
     return `<div class="photo-card">
                         <a class="gallery__link" href="${element.largeImageURL}">
                           <img src="${element.webformatURL}" alt="${element.tags}" data-source="${element.largeImageURL}" loading="lazy"/>
