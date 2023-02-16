@@ -8,12 +8,12 @@ const perPage = 20;
 
 const loadMore = document.querySelector('.load_more');
 const gallery = document.querySelector('.gallery');
-// let counterResponse = 1;
 
 async function getPixa(inputValue, counterPage, counterResponse) {
   const response = await axios.get(
     `${URL}?key=${KEY}&q=${inputValue}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${perPage}&page=${counterPage}`
   );
+
   let galleryRef = await response.data.hits.map(element => {
     return `<div class="photo-card">
                         <a class="gallery__link" href="${element.largeImageURL}">
@@ -35,7 +35,7 @@ async function getPixa(inputValue, counterPage, counterResponse) {
                           </div>
                         </div>`;
   });
-  console.log(counterResponse);
+
   if (galleryRef.length === 0 && counterResponse > 1) {
     Notify.info("We're sorry, but you've reached the end of search results.");
     loadMore.setAttribute('disabled', '');

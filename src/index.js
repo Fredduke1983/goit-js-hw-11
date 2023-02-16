@@ -26,12 +26,13 @@ function onSubmitForm(e) {
   counterPage = 1;
   counterResponse = 1;
   e.target.reset();
+
   loadMore.innerHTML = 'Load more...';
   loadMore.removeAttribute('disabled');
   loadMore.classList.add('is-hidden');
+
   if (inputValue.length !== 0) {
     getPixa(inputValue, counterPage, counterResponse);
-    console.log();
   } else Notify.warning('Please, type anything for searching!');
 }
 
@@ -42,12 +43,15 @@ function resetGallery() {
 async function onBtnMore() {
   counterPage += 1;
   counterResponse += 1;
+
   await getPixa(inputValue, counterPage, counterResponse);
   const { height: cardHeight } =
     gallery.firstElementChild.getBoundingClientRect();
+
   window.scrollBy({
     top: cardHeight * 2,
     behavior: 'smooth',
   });
+
   lightBox.refresh();
 }
