@@ -55,8 +55,8 @@ async function getPixa(inputValue, counterPage, counterResponse) {
   }
 }
 
-function renderHTML(gallery, refGallery) {
-  gallery.insertAdjacentHTML('beforeend', refGallery.join(''));
+function renderHTML(gallery, galleryRef) {
+  gallery.insertAdjacentHTML('beforeend', galleryRef.join(''));
 }
 
 export default getPixa;
