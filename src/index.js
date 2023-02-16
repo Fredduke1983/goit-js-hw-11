@@ -32,6 +32,7 @@ function onSubmitForm(e) {
   counterPage = 1;
   counterResponse = 1;
   e.target.reset();
+  loadMore.innerHTML = 'Load more...';
   loadMore.removeAttribute('disabled');
   loadMore.classList.add('is-hidden');
   if (inputValue.length !== 0) {
@@ -84,6 +85,7 @@ async function getPixa() {
   if (galleryRef.length === 0 && counterResponse > 1) {
     Notify.info("We're sorry, but you've reached the end of search results.");
     loadMore.setAttribute('disabled', '');
+    loadMore.innerHTML = 'No more';
   } else if (galleryRef.length === 0 && counterResponse === 1) {
     Notify.warning(
       'Sorry, there are no images matching your search query. Please try again.'
