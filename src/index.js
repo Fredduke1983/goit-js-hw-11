@@ -45,6 +45,7 @@ async function onBtnMore() {
   counterResponse += 1;
 
   await getPixa(inputValue, counterPage, counterResponse);
+
   const { height: cardHeight } =
     gallery.firstElementChild.getBoundingClientRect();
 
